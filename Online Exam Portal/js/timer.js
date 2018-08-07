@@ -10,7 +10,11 @@ function countdown(seconds) {
       counter.innerHTML = current_minutes + ":" + (current_seconds < 10 ? "0" : "") + current_seconds;
       if( seconds > 0 ) {
         setTimeout(tick, 1000);
-      } 
+      }
+        else if( seconds >= 0 )
+      {
+          alert("Test Submitted SuccessfUlly !!!");
+      }
     }
     tick();
   }
