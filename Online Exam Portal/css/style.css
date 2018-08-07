@@ -1,0 +1,71 @@
+body{
+    margin:0 auto;
+    padding: 0;
+    background-color:red;
+    background:url(../images/exam.jpg);
+    background-size: cover;
+    font-family: Verdana;
+}
+h2{
+    font-size: 15px;
+}
+#test_status{
+    -webkit-box-shadow:0 10px 6px -6px #777;
+    -moz-box-shadow:0 10px 6px -6px #777;
+    -box-shadow:0 10px 6px -6px #777;
+}
+#test{
+    width: 500px;
+    height: 180px;
+    background-color: white;
+    margin-left:400px;
+    margin-top: 30px;
+    position: relative;
+}
+#test:before, #test:after{
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 25px;
+    left: 10px;
+    width: 50%;
+    top: 80%;
+    max-width: 300px;
+    background: #777;
+    -webkit-box-shadow:0 35px 20px #777;
+    -moz-box-shadow:0 35px 20px #777;
+    box-shadow: 0 35px 20px #777;
+    -webkit-transform:rotate(-8deg);
+    -moz-transform: rotate(-8deg);
+    -o-transform: rotate(-8deg);
+    -ms-transform: rotate(-8deg);
+    transform: rotate(-8deg);
+}
+#test:after{
+    -webkit-transform:rotate(-8deg);
+    -moz-transform: rotate(-8deg);
+    -o-transform: rotate(-8deg);
+    -ms-transform: rotate(-8deg);
+    transform: rotate(-8deg);
+    right: 10px;
+    left: auto;
+}
+#test_status{
+    color: white;
+    width:565px;
+    height: 30 px;
+    background-color: red;
+    margin-left: 400px;
+    margin-top: 130px;
+    padding-left: 15px;
+    padding-top: 3px;
+    border-radius: 13px;
+}
+input{
+    margin-left: 50px;
+}
+.timecounter{
+    color:white;
+    margin-left: 85%;
+    margin-top: 30px;
+}
