@@ -1,33 +1,33 @@
 (function() {
     var questions = [{
       question: "Which of the following produces high-quality output?",
-      choices: ["Impact printer","Non-impact printer", "Plotter", "Both '1' and '2'"],
+      choices: [" Impact printer"," Non-impact printer", " Plotter", " Both '1' and '2'"],
       correctAnswer: 1
     }, {
       question: "A bar code reader is an example of?",
-      choices: ["processing device", "storage device", "input device", "output device"],
+      choices: [" processing device", " storage device", " input device", " output device"],
       correctAnswer: 2
     }, {
       question: "What is 8*9?",
-      choices: [72, 99, 108, 134, 156],
+      choices: [ 72, 99, 108, 134, 156],
       correctAnswer: 0
     }, {
       question: "In MICR, C stands for?",
-      choices: ["code"," colour","computer","character"],
+      choices: [" code"," colour"," computer"," character"],
       correctAnswer: 3
     }, {
       question: "What is 8*8?",
-      choices: [20, 30, 40, 50, 64],
+      choices: [ 20, 30, 40, 50, 64],
       correctAnswer: 4
     },
     {
         question: "The pattern of printed lines on most products are called?",
-        choices: ["prices","OCR","scanners","bar code"],
+        choices: [" prices"," OCR"," scanners"," bar code"],
         correctAnswer: 3
       },
       {
         question: "What is 12*12?",
-        choices: [20, 30, 144, 50, 64],
+        choices: [ 20, 30, 144, 50, 64],
         correctAnswer: 2
       }];
 
@@ -71,7 +71,8 @@
       questionCounter--;
       displayNext();
     });
-    
+    // click for submit
+    $("#submit").click(displayScore);
     // Click handler for the 'Start Over' button
     /*$('#start').on('click', function (e) {
       e.preventDefault();
@@ -126,12 +127,25 @@
       }
       return radioList;
     }
-    
+  
     // Reads the user selection and pushes the value to an array
     function choose() {
-      selections[questionCounter] = +$('input[name="answer"]:checked').val();
+      selections[questionCounter] = +$('input[name="answer"]:checked');
+      sessionStorage.setItem('answer',selections[questionCounter]);
     }
-    
+    //Refresh data
+    window.onload=function()
+    {
+      var a= sessionStorage.getItem('input[name="answer"]:checked').val();
+      if (a!==null)
+      {
+        document.getElementsByName("answer").value = a;
+      }
+    }
+
+    window.onbeforeunload=function(){
+      sessionStorage.setItem("answer",$('#answer').val());
+    }
     // Displays next requested element
     function displayNext() {
       quiz.fadeOut(function() {
@@ -164,7 +178,7 @@
     
     // Computes score and returns a paragraph element to be displayed
     function displayScore() {
-      var score = $('<p>',{id: 'question'});
+     // var score = $('<p>',{id: 'question'});
       
       var numCorrect = 0;
       for (var i = 0; i < selections.length; i++) {
@@ -173,8 +187,38 @@
         }
       }
       
-      score.append('You got ' + numCorrect + ' questions out of ' +
-                   questions.length + ' right!!!');
-      return score;
+      //score.append('You got ' + numCorrect + ' questions out of ' +
+                   //questions.length + ' right!!!');
+      //return score;
+	  var gameOverHtml = "<h1> Result </h1>"
+	  gameOverHtml += "<h2 id: 'question'> Your Score : " + numCorrect + ' out of ' + questions.length + "</h2>";
+	  var element = document.getElementById("result");
+	  element.innerHTML=gameOverHtml;
+	  
     }
+	
+	function countdown(seconds) {
+    seconds = parseInt(sessionStorage.getItem("seconds"))||seconds;
+  
+    function tick() {
+      seconds--; 
+      sessionStorage.setItem("seconds", seconds)
+      var counter = document.getElementById("timer");
+      var current_minutes = parseInt(seconds/60);
+      var current_seconds = seconds % 60;
+      counter.innerHTML = current_minutes + ":" + (current_seconds < 10 ? "0" : "") + current_seconds;
+      if( seconds > 0 ) {
+        setTimeout(tick, 1000);
+      } 
+      else 
+		  
+      {
+          alert("Test Submitted SuccessfUlly !!!");
+		  displayScore();
+      }
+    }
+    tick();
+  }
+  
+  countdown(120)
   })();
